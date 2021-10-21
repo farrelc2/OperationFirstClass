@@ -1,0 +1,9 @@
+single player game
+competiting against yourself for a higher score
+player rolls dice
+dice display
+player chooses dice to keep, re-rolls other dice
+3 rolls total
+display score card (13 categories)
+player chooses which score card to input
+player repeats rolls for 13 rounds (while loop w/ break)
