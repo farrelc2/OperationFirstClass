@@ -1,0 +1,19 @@
+Menu
+Display 4 games, Connect 4, Go Fish, Rochambeau, Yahtzee
+Display ascii art
+Brief Description of the game library (how to)
+
+Enter 1G or 1R for Connect 4 ,2G or 2R for Go Fish, 3G or 3R for Rochambeau,4G or 4R for Yahtzee, Q for quit 
+
+  Error handling for upper lowercase and entering wrong stuff.
+Select Game, Select Rules, or Quit
+
+BREAK
+CONNECT 4
+Display ART
+
+Play or Rules or return to menu or quit
+
+if player selects quit at anytime ends the program, or menu returns to menu
+
+
