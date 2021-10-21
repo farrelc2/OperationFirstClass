@@ -18,7 +18,38 @@ int main()
     cout << " \\|___|/                                                                       " << endl;
     cout << "                                                                               " << endl;
     
+    cout << "INSTRUCTIONS:" << endl;
+
+    class Yahtzee{
+        private:
+            int diceValue[5];
+        public:
+            Yahtzee()
+            void display();
+    }
+    
+    void Yahtzee::display(){
+        
+        cout << "-----   -----   -----   -----   -----" << endl;
+        
+        if (diceValue[i] == 1)
+        {
+            cout << "|   |   ";
+        }
+        if (diceValue[i] == 2 || diceValue[i] == 3)
+        {
+            cout << "|  o|   ";
+        }
+        if (diceValue[i] == 4 || diceValue[i] == 5 || diceValue[i] == 6)
+        {
+            cout << "|o o|   ";
+        }
+        cout << ""
+        
+        cout << "-----   -----   -----   -----   -----" << endl;
+        cout << "  1       2       3       4       5  " << endl;
+    }
     
     
     return 0;
-}                              
+}  
