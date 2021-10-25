@@ -1,0 +1,29 @@
+#include stdio.h
+using stdnamespace
+
+//rock ascii art
+
+cout<<"    ----- "<<endl;
+cout<<"	  //     \\"<<endl;
+cout<<"	  |		     |"<<endl;
+cout<<"	  \	      /"<<endl;
+cout<<"		  -----"<<endl;
+
+//paper ascii art
+
+cout"    __________"<<endl;
+cout"   |          |"<<endl;
+cout"   |          |"<<endl;
+cout"   |          |"<<endl;
+cout"   |          |"<<endl;
+cout"   |          |"<<endl;
+cout"   |          |"<<endl;
+cout"   |__________|"<<endl;
+
+//scissor ascii art
+
+cout<<"   _       ,/'"<< endl;
+cout<<"  (_).  ,/'"<<endl;
+cout<<"   _  ::  "<<endl;
+cout<<"  (_)'  `\."<<endl;
+cout"           `\."<<endl;
