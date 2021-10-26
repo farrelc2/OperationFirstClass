@@ -55,7 +55,6 @@ void Yahtzee::rollDice(){
 }
 
 void Yahtzee::reRoll(){
-    srand (time(NULL));
     char choice;
     int diceNum = 1;
     for(int i = 0; i < 5; i++)
@@ -127,9 +126,209 @@ void Yahtzee::display(){
     cout << "-----   -----   -----   -----   -----" << endl;
     cout << " (1)     (2)     (3)     (4)     (5)  " << endl;
 }
+
+class ScoreCard{
+    private:
+    int aces = 0;
+    int twos = 0;
+    int threes = 0;
+    int fours = 0;
+    int fives = 0;
+    int sixes = 0;
+    int upperSectionTotal
+    int upperBonus = 0;
+    int upperSectionTotalBonus = 0;
+    
+    int threeOfAKind = 0;
+    int fourOfAKind = 0;
+    int fullHouse = 0;
+    int smallStraight = 0;
+    int largeStraight = 0;
+    int yahtzee = 0;
+    int chance = 0;
+    int lowerBonus = 0;
+    int lowerSectionTotal = 0;
+    
+    public:
+    void upperScoreCard();
+    void lowerScoreCard();
+    void dispalyScoreCard();
+};
+
+void upperScoreCard(){
+    int selectScore;
+    int firstScore = 0;
+    if (firstScore == 0)
+    {
+        bool box1 = false;
+        bool box2 = false;
+        bool box3 = false;
+        bool box4 = false;
+        bool box5 = false;
+        bool box6 = false;
+    }
+    if (selectScore == 1 && box1 == false) // Count and add only ones
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == 1)
+            {
+                aces += 1;
+            }
+        }
+        upperSectionTotal += aces;
+        box1 = true;
+    }
+    if (selectScore == 2 && box2 == false) // Count and add only twos
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == 2)
+            {
+                twos += 2;
+            }
+        }
+        upperSectionTotal += twos;
+        box2 = true;
+    }
+    if (selectScore == 3 && box3 == false) // Count and add only threes
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == 3)
+            {
+                threes += 3;
+            }
+        }
+        upperSectionTotal += threes;
+        box3 = true;
+    }
+    if (selectScore == 4 && box4 == false) // Count and add only fours
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == 4)
+            {
+                fours += 4;
+            }
+        }
+        upperSectionTotal += fours;
+        box4 = true;
+    }
+    if (selectScore == 5 && box5 == false) // Count and add only fives
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (selectScore == 5)
+            {
+                fives += 5;
+            }
+        }
+        upperSectionTotal += fives;
+        box5 = true;
+    }
+    if (selectScore == 6 && box6 == false) // Count and add only sixes
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (selectScore == 6)
+            {
+                sixes += 6;
+            }
+        }
+        upperSectionTotal += sixes;
+        box6 = true;
+    }
+}
+void lowerScoreCard(){
+    int selectScore;
+    
+    if (selectScore == 7) // 3 of a kind, add all dice
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            threeOfAKind += diceValue[i];
+        }
+        lowerSectionTotal += threeOfAKind;
+    }
+    if (selectScore == 8) // 4 of a kind, add all dice
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            fourOfAKind += diceValue[i];
+        }
+        lowerSectionTotal += fourOfAKind;
+    }
+    if (selectScore == 9) // Full house, score 25
+    {
+        int temp1 = 0;
+        int temp2 = 0;
+        for (int i = 0; i < 5; i++)
+        {
+            fullHouse = 25;
+        }
+        lowerSectionTotal += fullHouse;
+    }
+    if (selectScore == 10) // Small straight, number order of four
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            smallStraight = 30;
+        }
+        lowerSectionTotal += smallStraight;
+    }
+    if (selectScore == 11) // Large straight, number order of five
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            largeStraight == 40;
+        }
+        lowerSectionTotal += largeStraight;
+    }
+    if (selectScore == 12) // Yahtzee, 5 of a kind
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            yahtzee = 50;
+        }
+        lowerSectionTotal += yahtzee;
+    }
+    if (selectScore == 13) // Chance, add up all dice
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            chance += diceValue[i];
+        }
+        lowerSectionTotal += chance;
+    }
+}
+
+void displayScoreCard(){
+    cout << "Upper Section:"
+    cout << "(1) Aces: " << aces << endl;
+    cout << "(2) Twos: " << twos << endl;
+    cout << "(3) Threes: " << threes << endl;
+    cout << "(4) Fours: " << fours << endl;
+    cout << "(5) Fives: " << fives << endl;
+    cout << "(6) Sixes: " << sixes << endl;
+    cout << "Total Score: " << upperSectionTotal << endl;
+    cout << "Bonus: " << upperBonus << endl;
+    cout << "Total: " << upperSectionTotalBonus << endl;
+    cout << " " << endl;
+    cout << "Lower Section:" << endl;
+    cout << "(7) 3 of a Kind: " << threeOfAKind << endl;
+    cout << "(8) 4 of a Kind: " << fourOfAKind << endl;
+    cout << "(9) Full House: " << fullHouse << endl;
+    cout << "(10) Small Straight: " << smallStraight << endl;
+    cout << "(11) Large Straight: " << largeStraight << endl;
+    cout << "(12) Yahtzee: " << yahtzee << endl;
+    cout << "(13) Chance: " << chance << endl;
+    
+}
     
 int main()
 {
+    srand (time(NULL));
     displayYahtzee();
     Yahtzee Round1(1,1,1,1,1);
     Round1.rollDice();
