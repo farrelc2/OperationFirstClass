@@ -135,7 +135,7 @@ class ScoreCard{
     int fours = 0;
     int fives = 0;
     int sixes = 0;
-    int upperSectionTotal
+    int upperSectionTotal = 0;
     int upperBonus = 0;
     int upperSectionTotalBonus = 0;
     
@@ -155,7 +155,7 @@ class ScoreCard{
     void dispalyScoreCard();
 };
 
-void upperScoreCard(){
+void ScoreCard::upperScoreCard(){
     int selectScore;
     int firstScore = 0;
     if (firstScore == 0)
@@ -240,30 +240,135 @@ void upperScoreCard(){
         box6 = true;
     }
 }
-void lowerScoreCard(){
+void ScoreCard::lowerScoreCard(){
     int selectScore;
     
     if (selectScore == 7) // 3 of a kind, add all dice
     {
+        int TOAK1 = 0;
+        int TOAK2 = 0;
+        int TOAK3 = 0;
+        int TOAK4 = 0;
+        int TOAK5 = 0;
+        int TOAK6 = 0;
         for (int i = 0; i < 5; i++)
         {
-            threeOfAKind += diceValue[i];
+            if (diceValue[i] == 1)
+            {
+                TOAK1++;
+            }
+            else if (diceValue[i] == 2)
+            {
+                TOAK2++;
+            }
+            else if (diceValue[i] == 3)
+            {
+                TOAK3++;
+            }
+            else if (diceValue[i] == 4)
+            {
+                TOAK4++;
+            }
+            else if (diceValue[i] == 5)
+            {
+                TOAK5++;
+            }
+            else if (diceValue[i] == 6)
+            {
+                TOAK6++;
+            }
+        }
+        if ((TOAK1 >= 3) || (TOAK2 >= 3) || (TOAK3 >= 3) || (TOAK4 >= 3) || (TOAK5 >= 3) || (TOAK6 >= 3))
+        {
+            threeOfAKind += diceValue[0];
+            threeOfAKind += diceValue[1];
+            threeOfAKind += diceValue[2];
+            threeOfAKind += diceValue[3];
+            threeOfAKind += diceValue[4];
         }
         lowerSectionTotal += threeOfAKind;
     }
     if (selectScore == 8) // 4 of a kind, add all dice
     {
+        int FOAK1 = 0;
+        int FOAK2 = 0;
+        int FOAK3 = 0;
+        int FOAK4 = 0;
+        int FOAK5 = 0;
+        int FOAK6 = 0;
         for (int i = 0; i < 5; i++)
         {
-            fourOfAKind += diceValue[i];
+            if (diceValue[i] == 1)
+            {
+                FOAK1++;
+            }
+            else if (diceValue[i] == 2)
+            {
+                FOAK2++;
+            }
+            else if (diceValue[i] == 3)
+            {
+                FOAK3++;
+            }
+            else if (diceValue[i] == 4)
+            {
+                FOAK4++;
+            }
+            else if (diceValue[i] == 5)
+            {
+                FOAK5++;
+            }
+            else if (diceValue[i] == 6)
+            {
+                FOAK6++;
+            }
+        }
+        if ((FOAK1 >= 3) || (FOAK2 >= 3) || (FOAK3 >= 3) || (FOAK4 >= 3) || (FOAK5 >= 3) || (FOAK6 >= 3))
+        {
+            fourOfAKind += diceValue[0];
+            fourOfAKind += diceValue[1];
+            fourOfAKind += diceValue[2];
+            fourOfAKind += diceValue[3];
+            fourOfAKind += diceValue[4];
         }
         lowerSectionTotal += fourOfAKind;
     }
     if (selectScore == 9) // Full house, score 25
     {
-        int temp1 = 0;
-        int temp2 = 0;
+        int FH1 = 0;
+        int FH2 = 0;
+        int FH3 = 0;
+        int FH4 = 0;
+        int FH5 = 0;
+        int FH6 = 0;
         for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == 1)
+            {
+                FH1++;
+            }
+            else if (diceValue[i] == 2)
+            {
+                FH2++;
+            }
+            else if (diceValue[i] == 3)
+            {
+                FH3++;
+            }
+            else if (diceValue[i] == 4)
+            {
+                FH4++;
+            }
+            else if (diceValue[i] == 5)
+            {
+                FH5++;
+            }
+            else if (diceValue[i] == 6)
+            {
+                FH6++;
+            }
+        }
+        if (((FH1 || FH2 || FH3 || FH4 || FH5 || FH6) == 2) && ((FH1 || FH2 || FH3 || FH4 || FH5 || FH6) == 3))
         {
             fullHouse = 25;
         }
@@ -287,7 +392,7 @@ void lowerScoreCard(){
     }
     if (selectScore == 12) // Yahtzee, 5 of a kind
     {
-        for (int i = 0; i < 5; i++)
+        if (diceValue[0] == diceValue[1] == diceValue[2] == diceValue[3] == diceValue[4])
         {
             yahtzee = 50;
         }
@@ -303,7 +408,7 @@ void lowerScoreCard(){
     }
 }
 
-void displayScoreCard(){
+void ScoreCard::displayScoreCard(){
     cout << "Upper Section:"
     cout << "(1) Aces: " << aces << endl;
     cout << "(2) Twos: " << twos << endl;
