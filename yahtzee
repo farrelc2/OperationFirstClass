@@ -35,10 +35,16 @@ class Yahtzee{
             diceValue[3] = d4;
             diceValue[4] = d5;
         }
+        Yahtzee(){ diceValue[0] = 1; diceValue[1] = 1; diceValue[2] = 1; diceValue[3] = 1; diceValue[4] = 1; }
+        int getDiceValue(int y);
         void rollDice();
         void reRoll();
         void display();
 };
+
+int Yahtzee::getDiceValue(int y){
+    return diceValue[y];
+}
 
 void Yahtzee::rollDice(){
     srand (time(NULL));
@@ -150,23 +156,27 @@ class ScoreCard{
     int lowerSectionTotal = 0;
     
     public:
+    Yahtzee R;
     void upperScoreCard();
     void lowerScoreCard();
-    void dispalyScoreCard();
+    void displayScoreCard();
 };
 
 void ScoreCard::upperScoreCard(){
+    int diceValue[5];
+    for (int i = 0; i < 5; i++)
+    {
+        diceValue[i] = R.getDiceValue(i);
+    }
     int selectScore;
     int firstScore = 0;
-    if (firstScore == 0)
-    {
-        bool box1 = false;
-        bool box2 = false;
-        bool box3 = false;
-        bool box4 = false;
-        bool box5 = false;
-        bool box6 = false;
-    }
+    static bool box1 = false;
+    static bool box2 = false;
+    static bool box3 = false;
+    static bool box4 = false;
+    static bool box5 = false;
+    static bool box6 = false;
+    
     if (selectScore == 1 && box1 == false) // Count and add only ones
     {
         for (int i = 0; i < 5; i++)
@@ -241,8 +251,12 @@ void ScoreCard::upperScoreCard(){
     }
 }
 void ScoreCard::lowerScoreCard(){
+    int diceValue[5];
+    for (int i = 0; i < 5; i++)
+    {
+        diceValue[i] = R.getDiceValue(i);
+    }
     int selectScore;
-    
     if (selectScore == 7) // 3 of a kind, add all dice
     {
         int TOAK1 = 0;
@@ -376,17 +390,92 @@ void ScoreCard::lowerScoreCard(){
     }
     if (selectScore == 10) // Small straight, number order of four
     {
+        int TEMP = 4;
+        int smallS[4];
         for (int i = 0; i < 5; i++)
         {
-            smallStraight = 30;
+            if (diceValue[i] < TEMP)
+            {
+                TEMP = diceValue[i];
+            }
+        }
+        smallS[0] = TEMP;
+        for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == smallS[0] + 1)
+            {
+                smallS[1] = diceValue[i];
+            }
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == smallS[1] + 1)
+            {
+                smallS[2] = diceValue[i];
+            }
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == smallS[2] + 1)
+            {
+                smallS[3] = diceValue[i];
+            }
+        }    
+        for (int i = 0; i < 4; i++)
+        {
+            if (smallS[i] == smallS[i-1] + 1)
+            {
+                smallStraight = 30;
+            }
         }
         lowerSectionTotal += smallStraight;
     }
     if (selectScore == 11) // Large straight, number order of five
     {
+        int TEMP = 3;
+        int largeS[5];
         for (int i = 0; i < 5; i++)
         {
-            largeStraight == 40;
+            if (diceValue[i] < TEMP)
+            {
+                TEMP = diceValue[i];
+            }
+        }
+        largeS[0] = TEMP;
+        for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == largeS[0] + 1)
+            {
+                largeS[1] = diceValue[i];
+            }
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == largeS[1] + 1)
+            {
+                largeS[2] = diceValue[i];
+            }
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == largeS[2] + 1)
+            {
+                largeS[3] = diceValue[i];
+            }
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == largeS[3] + 1)
+            {
+                largeS[4] = diceValue[i];
+            }
+        }
+        for (int i = 0; i < 4; i++)
+        {
+            if (largeS[i] == largeS[i-1] + 1)
+            {
+                largeStraight = 40;
+            }
         }
         lowerSectionTotal += largeStraight;
     }
@@ -409,7 +498,7 @@ void ScoreCard::lowerScoreCard(){
 }
 
 void ScoreCard::displayScoreCard(){
-    cout << "Upper Section:"
+    cout << "Upper Section:" << endl;
     cout << "(1) Aces: " << aces << endl;
     cout << "(2) Twos: " << twos << endl;
     cout << "(3) Threes: " << threes << endl;
@@ -428,7 +517,6 @@ void ScoreCard::displayScoreCard(){
     cout << "(11) Large Straight: " << largeStraight << endl;
     cout << "(12) Yahtzee: " << yahtzee << endl;
     cout << "(13) Chance: " << chance << endl;
-    
 }
     
 int main()
@@ -441,6 +529,6 @@ int main()
     Round1.reRoll();
     Round1.display();
     Round1.reRoll();
-    Round1.display();
+    Round1.display(); 
     return 0;
 }
