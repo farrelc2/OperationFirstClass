@@ -156,6 +156,8 @@ class ScoreCard{
     int lowerSectionTotal = 0;
     
     public:
+    ScoreCard(Yahtzee& currentRoll){ R = currentRoll; }
+    int selectScore;
     Yahtzee R;
     void upperScoreCard();
     void lowerScoreCard();
@@ -167,17 +169,10 @@ void ScoreCard::upperScoreCard(){
     for (int i = 0; i < 5; i++)
     {
         diceValue[i] = R.getDiceValue(i);
+        cout << diceValue[i];
     }
-    int selectScore;
-    int firstScore = 0;
-    static bool box1 = false;
-    static bool box2 = false;
-    static bool box3 = false;
-    static bool box4 = false;
-    static bool box5 = false;
-    static bool box6 = false;
     
-    if (selectScore == 1 && box1 == false) // Count and add only ones
+    if (selectScore == 1) // Count and add only ones
     {
         for (int i = 0; i < 5; i++)
         {
@@ -187,9 +182,9 @@ void ScoreCard::upperScoreCard(){
             }
         }
         upperSectionTotal += aces;
-        box1 = true;
+        cout << "You scored " << aces << " points!" << endl;
     }
-    if (selectScore == 2 && box2 == false) // Count and add only twos
+    if (selectScore == 2) // Count and add only twos
     {
         for (int i = 0; i < 5; i++)
         {
@@ -199,9 +194,9 @@ void ScoreCard::upperScoreCard(){
             }
         }
         upperSectionTotal += twos;
-        box2 = true;
+        cout << "You scored " << twos << " points!" << endl;
     }
-    if (selectScore == 3 && box3 == false) // Count and add only threes
+    if (selectScore == 3) // Count and add only threes
     {
         for (int i = 0; i < 5; i++)
         {
@@ -211,9 +206,9 @@ void ScoreCard::upperScoreCard(){
             }
         }
         upperSectionTotal += threes;
-        box3 = true;
+        cout << "You scored " << threes << " points!" << endl;
     }
-    if (selectScore == 4 && box4 == false) // Count and add only fours
+    if (selectScore == 4) // Count and add only fours
     {
         for (int i = 0; i < 5; i++)
         {
@@ -223,31 +218,31 @@ void ScoreCard::upperScoreCard(){
             }
         }
         upperSectionTotal += fours;
-        box4 = true;
+        cout << "You scored " << fours << " points!" << endl;
     }
-    if (selectScore == 5 && box5 == false) // Count and add only fives
+    if (selectScore == 5) // Count and add only fives
     {
         for (int i = 0; i < 5; i++)
         {
-            if (selectScore == 5)
+            if (diceValue[i] == 5)
             {
                 fives += 5;
             }
         }
         upperSectionTotal += fives;
-        box5 = true;
+        cout << "You scored " << fives << " points!" << endl;
     }
-    if (selectScore == 6 && box6 == false) // Count and add only sixes
+    if (selectScore == 6) // Count and add only sixes
     {
         for (int i = 0; i < 5; i++)
         {
-            if (selectScore == 6)
+            if (diceValue[i] == 6)
             {
                 sixes += 6;
             }
         }
         upperSectionTotal += sixes;
-        box6 = true;
+        cout << "You scored " << sixes << " points!" << endl;
     }
 }
 void ScoreCard::lowerScoreCard(){
@@ -256,7 +251,6 @@ void ScoreCard::lowerScoreCard(){
     {
         diceValue[i] = R.getDiceValue(i);
     }
-    int selectScore;
     if (selectScore == 7) // 3 of a kind, add all dice
     {
         int TOAK1 = 0;
@@ -301,6 +295,7 @@ void ScoreCard::lowerScoreCard(){
             threeOfAKind += diceValue[4];
         }
         lowerSectionTotal += threeOfAKind;
+        cout << "You scored " << threeOfAKind << " points!" << endl;
     }
     if (selectScore == 8) // 4 of a kind, add all dice
     {
@@ -346,6 +341,7 @@ void ScoreCard::lowerScoreCard(){
             fourOfAKind += diceValue[4];
         }
         lowerSectionTotal += fourOfAKind;
+        cout << "You scored " << fourOfAKind << " points!" << endl;
     }
     if (selectScore == 9) // Full house, score 25
     {
@@ -387,6 +383,7 @@ void ScoreCard::lowerScoreCard(){
             fullHouse = 25;
         }
         lowerSectionTotal += fullHouse;
+        cout << "You scored " << fullHouse << " points!" << endl;
     }
     if (selectScore == 10) // Small straight, number order of four
     {
@@ -429,6 +426,7 @@ void ScoreCard::lowerScoreCard(){
             }
         }
         lowerSectionTotal += smallStraight;
+        cout << "You scored " << smallStraight << " points!" << endl;
     }
     if (selectScore == 11) // Large straight, number order of five
     {
@@ -478,6 +476,7 @@ void ScoreCard::lowerScoreCard(){
             }
         }
         lowerSectionTotal += largeStraight;
+        cout << "You scored " << largeStraight << " points!" << endl;
     }
     if (selectScore == 12) // Yahtzee, 5 of a kind
     {
@@ -486,6 +485,7 @@ void ScoreCard::lowerScoreCard(){
             yahtzee = 50;
         }
         lowerSectionTotal += yahtzee;
+        cout << "You scored " << yahtzee << " points!" << endl;
     }
     if (selectScore == 13) // Chance, add up all dice
     {
@@ -494,6 +494,7 @@ void ScoreCard::lowerScoreCard(){
             chance += diceValue[i];
         }
         lowerSectionTotal += chance;
+        cout << "You scored " << chance << " points!" << endl;
     }
 }
 
@@ -517,18 +518,46 @@ void ScoreCard::displayScoreCard(){
     cout << "(11) Large Straight: " << largeStraight << endl;
     cout << "(12) Yahtzee: " << yahtzee << endl;
     cout << "(13) Chance: " << chance << endl;
+    cout << "Total: " << lowerSectionTotal << endl;
+    cout << "How would you like to score your roll?" << endl;
+    cin >> selectScore;
 }
     
 int main()
 {
     srand (time(NULL));
+    bool playGame = true;
+    char gameNull;
     displayYahtzee();
-    Yahtzee Round1(1,1,1,1,1);
-    Round1.rollDice();
-    Round1.display();
-    Round1.reRoll();
-    Round1.display();
-    Round1.reRoll();
-    Round1.display(); 
+    Yahtzee Round;
+    ScoreCard Player(Round);
+    while (playGame == true)
+    {
+        displayInstructions();
+        Round.rollDice();
+        Round.display();
+        Round.reRoll();
+        Round.display();
+        Round.reRoll();
+        Round.display();
+        Player.displayScoreCard();
+        if ((Player.selectScore >= 1) && (Player.selectScore <= 6))
+        {
+            Player.upperScoreCard();
+        }
+        else if ((Player.selectScore >= 7) && (Player.selectScore <= 13))
+        {
+            Player.lowerScoreCard();
+        }
+        cout << "Would you like to stop playing? (y/n)" << endl;
+        cin >> gameNull;
+        if (gameNull == 'y')
+        {
+            playGame = false;
+        }
+        else{}
+    }
+    
+    
     return 0;
 }
