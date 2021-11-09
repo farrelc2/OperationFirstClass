@@ -159,6 +159,9 @@ class ScoreCard{
     ScoreCard(Yahtzee& currentRoll){ R = currentRoll; }
     int selectScore;
     Yahtzee R;
+    void updateRound(Yahtzee& y){
+        R = y;
+    }
     void upperScoreCard();
     void lowerScoreCard();
     void displayScoreCard();
@@ -169,7 +172,6 @@ void ScoreCard::upperScoreCard(){
     for (int i = 0; i < 5; i++)
     {
         diceValue[i] = R.getDiceValue(i);
-        cout << diceValue[i];
     }
     
     if (selectScore == 1) // Count and add only ones
@@ -345,40 +347,36 @@ void ScoreCard::lowerScoreCard(){
     }
     if (selectScore == 9) // Full house, score 25
     {
-        int FH1 = 0;
+        int FL1 = 0;
+        int FL2 = 0;
         int FH2 = 0;
         int FH3 = 0;
-        int FH4 = 0;
-        int FH5 = 0;
-        int FH6 = 0;
         for (int i = 0; i < 5; i++)
         {
-            if (diceValue[i] == 1)
+            for (int j = 1; j <= 6; j++)
             {
-                FH1++;
-            }
-            else if (diceValue[i] == 2)
-            {
-                FH2++;
-            }
-            else if (diceValue[i] == 3)
-            {
-                FH3++;
-            }
-            else if (diceValue[i] == 4)
-            {
-                FH4++;
-            }
-            else if (diceValue[i] == 5)
-            {
-                FH5++;
-            }
-            else if (diceValue[i] == 6)
-            {
-                FH6++;
+                if ((diceValue[i] == j) && (FL1 == 0))
+                {
+                    FL1 = j;
+                }
+                else if ((diceValue[i] == j) && (diceValue[i] != FL1) && (FL2 == 0))
+                {
+                    FL2 = j;
+                }
             }
         }
-        if (((FH1 || FH2 || FH3 || FH4 || FH5 || FH6) == 2) && ((FH1 || FH2 || FH3 || FH4 || FH5 || FH6) == 3))
+        for (int i = 0; i < 5; i++)
+        {
+            if (diceValue[i] == FL1)
+            {
+                FH2 += 1;
+            }
+            else if(diceValue[i] == FL2)
+            {
+                FH3 += 1;
+            }
+        }
+        if (((FH2 == 3) && (FH3 == 2)) || ((FH2 == 2) && (FH3 == 3)))
         {
             fullHouse = 25;
         }
@@ -540,6 +538,7 @@ int main()
         Round.display();
         Round.reRoll();
         Round.display();
+        Player.updateRound(Round);
         Player.displayScoreCard();
         if ((Player.selectScore >= 1) && (Player.selectScore <= 6))
         {
@@ -549,9 +548,9 @@ int main()
         {
             Player.lowerScoreCard();
         }
-        cout << "Would you like to stop playing? (y/n)" << endl;
+        cout << "Would you like to continue playing? (y/n)" << endl;
         cin >> gameNull;
-        if (gameNull == 'y')
+        if (gameNull == 'n')
         {
             playGame = false;
         }
