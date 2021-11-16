@@ -1,0 +1,19 @@
+Pseudo Code
+
+Player selects rochambeau
+Display Rock, paper, and scissors
+
+random number 1,2,3 for CPU
+
+Player selects rock paper or scissors
+count, rock, paper, scissors, shoot
+display CPU selection ascii art
+display Player selection ascii art
+
+display win or loss or tie
+
+count number of wins for player
+
+if player selects fire display fire initialize sequence for friends thing
+
+player may exit at any time
