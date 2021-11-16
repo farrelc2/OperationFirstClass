@@ -5,6 +5,9 @@
 #include <fstream> //for ofstream class
 #include <windows.h>
 #include "Rochambeau.h"
+#include "ScoreCard.h"
+#include "Yahtzee.h"
+
 
 using namespace std;
 
@@ -56,6 +59,7 @@ int main() {
 
 		if (gameSelection == 1) {
 			//Play yahtzee
+			mainYahtzee();
 		}
 		else if (gameSelection == 2) {
 			//Play rochambeau
@@ -64,6 +68,7 @@ int main() {
 		}
 		else if (gameSelection == 3) {
 			//demo rules
+		
 		}
 		else {
 			cout << "Incorrect gameSelection, enter a valid choice: ";
