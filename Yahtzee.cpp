@@ -4,12 +4,12 @@
 #include <iostream>
 using namespace std;
 
-int Yahtzee::getDiceValue(int y){
+int Yahtzee::getDiceValue(int y) {
     return diceValue[y];
 }
 
-void Yahtzee::rollDice(){
-    srand (time(NULL));
+void Yahtzee::rollDice() {
+    srand(time(NULL));
     int r1 = rand() % 6 + 1;
     int r2 = rand() % 6 + 1;
     int r3 = rand() % 6 + 1;
@@ -22,10 +22,10 @@ void Yahtzee::rollDice(){
     diceValue[4] = r5;
 }
 
-void Yahtzee::reRoll(){
+void Yahtzee::reRoll() {
     char choice;
     int diceNum = 1;
-    for(int i = 0; i < 5; i++)
+    for (int i = 0; i < 5; i++)
     {
         cout << "Would you like to re-roll dice " << diceNum << "? (y/n)" << endl;
         cin >> choice;
@@ -33,7 +33,7 @@ void Yahtzee::reRoll(){
         {
             diceValue[i] = rand() % 6 + 1;
         }
-        if(choice == 'n')
+        if (choice == 'n')
         {
             // Keeps the dice value in place
         }
@@ -41,7 +41,7 @@ void Yahtzee::reRoll(){
     }
 }
 
-void Yahtzee::display(){
+void Yahtzee::display() {
     cout << "-----   -----   -----   -----   -----" << endl;
     for (int i1 = 0; i1 < 5; i1++)
     {
