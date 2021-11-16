@@ -1,3 +1,4 @@
+
 // Virtual Yahtzee Game
 
 #include <iostream>
@@ -7,7 +8,7 @@
 #include "ScoreCard.h"
 using namespace std;
 
-void displayYahtzee(){
+void displayYahtzee() {
     cout << "YOU SELECTED" << endl;
     cout << "   ___    ___ ________  ___  ___  _________  ________  _______   _______       " << endl;
     cout << "  |\\  \\  /  /|\\   __  \\|\\  \\|\\  \\|\\___   ___\\\\_____  \\|\\  ___ \\ |\\  ___ \\      " << endl;
@@ -20,13 +21,13 @@ void displayYahtzee(){
     cout << "                                                                               " << endl;
 }
 
-void displayInstructions(){
+void displayInstructions() {
     cout << "INSTRUCTIONS:" << endl;
 }
-    
-int main()
+
+int mainYahtzee()
 {
-    srand (time(NULL));
+    srand(time(NULL));
     bool playGame = true;
     char gameNull;
     displayYahtzee();
@@ -63,12 +64,12 @@ int main()
         {
             playGame = false;
         }
-        else{}
+        else {}
     }
     cout << "Your final score!" << endl;
     Player.displayScoreCard();
     cout << "Enter anything." << endl;
     cout << "Congratulations! Thanks for playing!" << endl;
-    
+
     return 0;
 }
