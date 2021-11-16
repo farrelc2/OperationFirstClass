@@ -1,5 +1,7 @@
-class ScoreCard{
-    private:
+#pragma once
+#include "Yahtzee.h"
+class ScoreCard {
+private:
     int aces = 0;
     int twos = 0;
     int threes = 0;
@@ -9,7 +11,7 @@ class ScoreCard{
     int upperSectionTotal = 0;
     int upperBonus = 0;
     int upperSectionTotalBonus = 0;
-    
+
     int threeOfAKind = 0;
     int fourOfAKind = 0;
     int fullHouse = 0;
@@ -19,12 +21,12 @@ class ScoreCard{
     int chance = 0;
     int lowerBonus = 0;
     int lowerSectionTotal = 0;
-    
-    public:
-    ScoreCard(Yahtzee& currentRoll){ R = currentRoll; }
+
+public:
+    ScoreCard(Yahtzee& currentRoll) { R = currentRoll; }
     int selectScore;
     Yahtzee R;
-    void updateRound(Yahtzee& y){
+    void updateRound(Yahtzee& y) {
         R = y;
     }
     void upperScoreCard();
