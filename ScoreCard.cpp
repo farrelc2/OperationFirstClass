@@ -5,13 +5,13 @@
 #include "ScoreCard.h"
 using namespace std;
 
-void ScoreCard::upperScoreCard(){
+void ScoreCard::upperScoreCard() {
     int diceValue[5];
     for (int i = 0; i < 5; i++)
     {
         diceValue[i] = R.getDiceValue(i);
     }
-    
+
     if (selectScore == 1) // Count and add only ones
     {
         for (int i = 0; i < 5; i++)
@@ -85,7 +85,7 @@ void ScoreCard::upperScoreCard(){
         cout << "You scored " << sixes << " points!" << endl;
     }
 }
-void ScoreCard::lowerScoreCard(){
+void ScoreCard::lowerScoreCard() {
     int diceValue[5];
     for (int i = 0; i < 5; i++)
     {
@@ -209,7 +209,7 @@ void ScoreCard::lowerScoreCard(){
             {
                 FH2 += 1;
             }
-            else if(diceValue[i] == FL2)
+            else if (diceValue[i] == FL2)
             {
                 FH3 += 1;
             }
@@ -253,10 +253,10 @@ void ScoreCard::lowerScoreCard(){
             {
                 smallS[3] = diceValue[i];
             }
-        }    
+        }
         for (int i = 0; i < 4; i++)
         {
-            if (smallS[i] == smallS[i-1] + 1)
+            if (smallS[i] == smallS[i - 1] + 1)
             {
                 smallStraight = 30;
             }
@@ -306,7 +306,7 @@ void ScoreCard::lowerScoreCard(){
         }
         for (int i = 0; i < 4; i++)
         {
-            if (largeS[i] == largeS[i-1] + 1)
+            if (largeS[i] == largeS[i - 1] + 1)
             {
                 largeStraight = 40;
             }
@@ -334,7 +334,7 @@ void ScoreCard::lowerScoreCard(){
     }
 }
 
-void ScoreCard::displayScoreCard(){
+void ScoreCard::displayScoreCard() {
     cout << "Upper Section:" << endl;
     cout << "(1) Aces: " << aces << endl;
     cout << "(2) Twos: " << twos << endl;
