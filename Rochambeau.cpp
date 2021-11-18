@@ -91,7 +91,7 @@ void playGame() {
     cout << "Enter in your selection,  rock,  paper, or scissors, : ";
     cin >> playerSelection;
     cout << endl;
-
+    cout << endl << "                        Player and CPU: 'ROW SHAM BO'" << endl << endl;
     if (playerSelection == "rock") {
         cout << "********PLAYER********" << endl;
         displayRock();
@@ -135,6 +135,7 @@ void playGame() {
 
         else {
             cout << "Enter a valid selection" << endl;
+            
         }
     }
     else if (playerSelection != "fire")
@@ -142,18 +143,49 @@ void playGame() {
         cout << "You lost" << endl;
     }
     if (pFire == 1) {
-        cout << "YOU WIN!" << endl;
+        cout << "YOU WIN!" << endl<<endl;
+        pRock = 0;
+        pPaper = 0;
+        pScissors = 0;
+        pFire = 0;
+        cpuRock = 0;
+        cpuPaper = 0;
+        cpuScissors = 0;
     }
     else if ((pRock == 1 && cpuScissors == 1) || (pPaper == 1 && cpuRock == 1) || (pScissors == 1 && cpuPaper == 1)) {
-        cout << "Player Wins" << endl;
+        cout << "Player Wins" << endl<<endl;
         playerWins++;
+       pRock = 0;
+       pPaper = 0;
+       pScissors = 0;
+       pFire = 0;
+       cpuRock = 0;
+       cpuPaper = 0;
+       cpuScissors = 0;
     }
     else if ((cpuRock == 1 && pScissors == 1) || (cpuPaper == 1 && pRock == 1) || (cpuScissors == 1 && pPaper == 1)) {
-        cout << "CPU Beat YOU" << endl;
+        cout << "CPU Beat YOU" << endl<<endl;
         cpuWins++;
+        pRock = 0;
+        pPaper = 0;
+        pScissors = 0;
+        pFire = 0;
+        cpuRock = 0;
+        cpuPaper = 0;
+        cpuScissors = 0;
     }
     else if ((cpuRock == 1 && pRock == 1) || (cpuPaper == 1 && pPaper == 1) || (cpuScissors == 1 && pScissors == 1)) {
         cout << "Player and CPU tied..." << endl << endl;
+        pRock = 0;
+        pPaper = 0;
+        pScissors = 0;
+        pFire = 0;
+        cpuRock = 0;
+        cpuPaper = 0;
+        cpuScissors = 0;
+    }
+    else {
+        cout << "Nobody Wins..." << endl << endl;
     }
 
 }
@@ -174,6 +206,9 @@ int mainRochambeau()
         }
         else if (select == 'N' || (select == 'n')) {
             endgame = 1;
+        }
+        else {
+            cout << "Enter proper selection: " << endl;
         }
     }
     return 0;
