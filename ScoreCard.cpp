@@ -355,6 +355,4 @@ void ScoreCard::displayScoreCard() {
     cout << "(12) Yahtzee: " << yahtzee << endl;
     cout << "(13) Chance: " << chance << endl;
     cout << "Total: " << lowerSectionTotal << endl;
-    cout << "How would you like to score your roll?" << endl;
-    cin >> selectScore;
 }
