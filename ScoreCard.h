@@ -24,6 +24,7 @@ private:
 
 public:
     ScoreCard(Yahtzee& currentRoll) { R = currentRoll; }
+    ~ScoreCard(){}
     int selectScore;
     Yahtzee R;
     void updateRound(Yahtzee& y) {
