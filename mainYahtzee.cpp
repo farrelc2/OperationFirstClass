@@ -1,8 +1,10 @@
 
+
 // Virtual Yahtzee Game
 
 #include <iostream>
 #include <limits>
+#include <climits>
 #include <string>
 #include "Yahtzee.h"
 #include "ScoreCard.h"
@@ -45,6 +47,16 @@ int mainYahtzee()
         Round.display();
         Player.updateRound(Round);
         Player.displayScoreCard();
+        cout << "How would you like to score your roll?" << endl;
+        cin >> Player.selectScore;
+        while ((!cin) || (Player.selectScore < 1) || (Player.selectScore > 13))
+        {
+            cin.clear();
+            cin.ignore(INT_MAX, '\n');
+            cout << "Invalid input, try again." << endl;
+            cout << "How would you like to score your roll?" << endl;
+            cin >> Player.selectScore;
+        }
         if ((Player.selectScore >= 1) && (Player.selectScore <= 6))
         {
             Player.upperScoreCard();
@@ -58,8 +70,24 @@ int mainYahtzee()
         {
             playGame = false;
         }
-        cout << "Would you like to continue playing? (y/n)" << endl;
-        cin >> gameNull;
+        bool validInput = false;
+        while (validInput == false)
+        {
+            try 
+            { 
+                cout << "Would you like to continue playing? (y/n)" << endl;
+                cin >> gameNull;
+                if ((gameNull != 'y') && (gameNull != 'n'))
+                {   
+                    throw "Invalid input, try again.";
+                }
+                validInput = true;
+            }
+            catch (const char* gameNull)
+            {
+                cout << gameNull << endl;
+            }
+        }
         if (gameNull == 'n')
         {
             playGame = false;
@@ -68,7 +96,6 @@ int mainYahtzee()
     }
     cout << "Your final score!" << endl;
     Player.displayScoreCard();
-    cout << "Enter anything." << endl;
     cout << "Congratulations! Thanks for playing!" << endl;
 
     return 0;
