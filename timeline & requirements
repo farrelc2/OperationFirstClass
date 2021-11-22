@@ -16,17 +16,17 @@ T,TH 1035-1150 in Bldg 58
 TH 1500-1700 Lib
 
 complete thoughtful selection of variable names, function names, and class names.
-incomplete division of code into multiple header and source code files
+complete division of code into multiple header and source code files
 complete if statements
 complete while, do-while, and/or for loops
 complete functions
 complete class definitions
-incomplete constructors and destructors
-incomplete operator overloading
-incomplete object composition
-incomplete inheritance
-incomplete exceptions
-incomplete file I/O
-incomplete a UML diagram
-incomplete demonstration of a  C++ command/function/concept that we have not covered in class yet
+complete constructors and destructors
+complete operator overloading
+complete object composition
+complete inheritance
+complete exceptions
+complete file I/O
+complete a UML diagram
+complete demonstration of a  C++ command/function/concept that we have not covered in class yet
 complete good programming practices
